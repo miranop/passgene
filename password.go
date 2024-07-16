@@ -85,14 +85,24 @@ func main() {
 
 	fmt.Println("****************************")
 	fmt.Println(" パスワード生成ツール v1.0")
-	fmt.Println(" (c) 2024 ふざけて著作権を追加しました")
+	fmt.Println(" (c) 2024 powered by Miranon")
 	fmt.Println("****************************")
 
-	length := promptForInt("パスワードの長さを入力してください: ")
-	useUpper := promptForBool("大文字を含めますか？ (true/false): ")
-	useNumber := promptForBool("数字を含めますか？ (true/false): ")
-	useSpecial := promptForBool("特殊文字を含めますか？ (true/false): ")
+	for {
+		length := promptForInt("パスワードの長さを入力してください: ")
+		useUpper := promptForBool("大文字を含めますか？ (true/false): ")
+		useNumber := promptForBool("数字を含めますか？ (true/false): ")
+		useSpecial := promptForBool("特殊文字を含めますか？ (true/false): ")
 
-	password := generatePass(length, useUpper, useNumber, useSpecial)
-	fmt.Println("生成されたパスワード:", password)
+		password := generatePass(length, useUpper, useNumber, useSpecial)
+		fmt.Println("生成されたパスワード:", password)
+
+		fmt.Print("終了しますか？ (y/n): ")
+		var exitInput string
+		fmt.Scan(&exitInput)
+		if strings.ToLower(strings.TrimSpace(exitInput)) == "y" {
+			fmt.Println("プログラムを終了します。")
+			break
+		}
+	}
 }
